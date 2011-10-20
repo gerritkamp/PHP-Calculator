@@ -1,0 +1,92 @@
+<?php if($this->isForm){ ?>
+<p class="indent">A Server-Side calculator (using PHP)</p>
+<form method="post" action="">
+<div id="calculator">
+<?php } else { ?>
+<p class="indent">A Client-Side calculator (using JavaScript)</p>
+<div id="calculator">
+<?php } ?>
+<table cellspacing="5px">
+	<tr>
+		<td colspan="4"><input type="text" class="big-font" readonly="readonly" id="results" name="result" value="<?php if(isset($this->displayResult)){echo $this->displayResult; } else { echo '0';} ?>" /></td>
+	</tr>
+	<tr>
+		<td><input id="mc" class="calc mem calcbutton" type="submit" name="data[mem][mc]" value="mc" /></td>
+		<td><input id="mplus" class="calc mem calcbutton" type="submit" name="data[mem][mplus]" value="m+" /></td>
+		<td><input id="mminus" class="calc mem calcbutton" type="submit" name="data[mem][mminus]" value="m-" /></td>
+		<td><input id="mr" class="calc mem calcbutton<?php echo $this->buttonClass['mem']; ?>" type="submit" name="data[mem][mr]" value="mr" /></td>
+	</tr>
+	<tr>
+		<td><input id="inv" class="calc cal calcbutton mini" type="submit" name="data[cal][inv]" value="1 ⁄ x" /></td>
+		<td><input id="sqr" class="calc cal calcbutton" type="submit" name="data[cal][sqr]" value="x²" /></td>
+		<td><input id="tri" class="calc cal calcbutton" type="submit" name="data[cal][tri]" value="x³" /></td>
+		<td><input id="sqrt" class="calc cal calcbutton" type="submit" name="data[cal][sqrt]" value="√" /></td>
+	</tr>
+	<tr>
+		<td><input id="sin" class="calc cal calcbutton" type="submit" name="data[cal][sin]" value="sin" /></td>
+		<td><input id="cos" class="calc cal calcbutton" type="submit" name="data[cal][cos]" value="cos" /></td>
+		<td><input id="tan" class="calc cal calcbutton" type="submit" name="data[cal][tan]" value="tan" /></td>
+		<td><input id="ln" class="calc cal calcbutton" type="submit" name="data[cal][ln]" value="ln" /></td>
+	</tr>
+	<tr>
+		<td><input id="sinh" class="calc cal calcbutton" type="submit" name="data[cal][sinh]" value="sinh" /></td>
+		<td><input id="cosh" class="calc cal calcbutton" type="submit" name="data[cal][cosh]" value="cosh" /></td>
+		<td><input id="tanh" class="calc cal calcbutton" type="submit" name="data[cal][tanh]" value="tanh" /></td>
+		<td><input id="ex" class="calc cal calcbutton" type="submit" name="data[cal][ex]" value="e^x" /></td>
+	</tr>
+	<tr>
+		<td><input id="ac" class="calc act calcbutton" type="submit" name="data[clr][<?php echo $this->clearLabel; ?>]" value="<?php if(isset($this->clearLabel)){echo $this->clearLabel;} ?>" /></td>
+		<td><input id="plusminus" class="calc act calcbutton" type="submit" name="data[neg][plusminus]" value="+/-" /></td>
+		<td><input id="divide" class="calc act calcbutton<?php echo $this->buttonClass['divide']; ?>" type="submit" name="data[act][divide]" value="÷"/></td>
+		<td><input id="multiply" class="calc act calcbutton<?php echo $this->buttonClass['multiply']; ?>" type="submit" name="data[act][multiply]" value="x" /></td>
+	</tr>
+	<tr>
+		<td><input id="num7" class="calc num calcbutton" type="submit" name="data[num][7]" value="7" /></td>
+		<td><input id="num8" class="calc num calcbutton" type="submit" name="data[num][8]" value="8" /></td>
+		<td><input id="num9" class="calc num calcbutton" type="submit" name="data[num][9]" value="9"/></td>
+		<td><input id="minus" class="calc act calcbutton<?php echo $this->buttonClass['minus']; ?>" type="submit" name="data[act][minus]" value="-" /></td>
+	</tr>
+	<tr>
+		<td><input id="num4" class="calc num calcbutton" type="submit" name="data[num][4]" value="4" /></td>
+		<td><input id="num5" class="calc num calcbutton" type="submit" name="data[num][5]" value="5" /></td>
+		<td><input id="num6" class="calc num calcbutton" type="submit" name="data[num][6]" value="6" /></td>
+		<td><input id="plus" class="calc act calcbutton<?php echo $this->buttonClass['plus']; ?>" type="submit" name="data[act][plus]" value="+" /></td>
+	</tr>
+	<tr>
+		<td><input id="num1" class="calc num calcbutton" type="submit" name="data[num][1]" value="1" /></td>
+		<td><input id="num2" class="calc num calcbutton" type="submit" name="data[num][2]" value="2" /></td>
+		<td><input id="num3" class="calc num calcbutton" type="submit" name="data[num][3]" value="3"/></td>
+		<td rowspan="2"><input id="equals" class="calc eql calc_high_button" type="submit" name="data[eql][equal]" value="=" /></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input id="num0" class="calc num calc_wide_button" type="submit" name="data[num][0]" value="0" /></td>
+		<td><input id="dot" class="calc num calcbutton" type="submit" name="data[dot][.]" value="." /></td>
+	</tr>
+</table>
+</div>
+<p>&nbsp;</p>
+<p class="indent"><input type="checkbox" id="showDebug" name="data[showInfo]" <?php if(isset($this->showInfo)){echo 'checked="checked"'; } ?> />Show Debug Information?</p>
+<?php if($this->isForm){ ?></form>
+	<p><a href="<?php echo $this->baseUrl.'/clientside/'; ?>" class="indent">Use the Client-side Calculator instead</a></p>
+	<?php if(isset($this->showInfo)){$showDebug = true;} else {$showDebug = false;} ?>
+<?php } else { ?>
+	<p><a href="<?php echo $this->baseUrl.'/serverside/'; ?>" class="indent">Use the Server-side Calculator instead</a></p>
+	<?php $showDebug = true; ?>
+<?php } ?>
+<p class="indent">Right-click <a href="<?php echo $this->baseUrl.'/files/calc.tar.gz'; ?>">here</a> to download the source code of both.</p>
+<?php if($showDebug){ ?>
+<div id="debugInfo" class="indent debuginfo">
+<table>
+	<tr><td>previousResult: </td><td><input id="previousResult" type="text" <?php if(isset($this->previousResult)){echo 'value="'.$this->previousResult.'"'; } ?> /></td></tr>
+	<tr><td>justPrEq: </td><td><input id="justPrEq" type="text" <?php if(isset($this->justPrEq)){echo 'value="'.$this->justPrEq.'"'; } ?> /></td></tr>
+	<tr><td>oldResult: </td><td><input id="oldResult" type="text" <?php if(isset($this->oldResult)){echo 'value="'.$this->oldResult.'"'; } ?> /></td></tr>
+	<tr><td>activeButton: </td><td><input id="activeButton" type="text" <?php if(isset($this->activeButton)){echo 'value="'.$this->activeButton.'"'; } ?> /></td></tr>
+	<tr><td>newResult: </td><td><input id="newResult" type="text" <?php if(isset($this->newResult)){echo 'value="'.$this->newResult.'"'; } ?> /></td></tr>
+	<tr><td>blockCalc: </td><td><input id="blockCalc" type="text" <?php if(isset($this->blockCalc)){echo 'value="'.$this->blockCalc.'"'; } ?> /></td></tr>
+	<tr><td>nextOp: </td><td><input id="nextOp" type="text" <?php if(isset($this->nextOp)){echo 'value="'.$this->nextOp.'"'; } ?> /></td></tr>
+	<tr><td>clearLabel: </td><td><input id="clearLabel" type="text" <?php if(isset($this->clearLabel)){echo 'value="'.$this->clearLabel.'"'; } ?> /></td></tr>
+	<tr><td>memValue: </td><td><input id="memValue" type="text" <?php if(isset($this->memValue)){echo 'value="'.$this->memValue.'"'; } ?> /></td></tr>
+	<tr><td>calcTime (sec): </td><td><input id="calcTime" type="text" <?php if(isset($this->calcTime)){echo 'value="'.$this->calcTime.'"'; } ?> /></td></tr>
+</table>
+</div>
+<?php } ?>

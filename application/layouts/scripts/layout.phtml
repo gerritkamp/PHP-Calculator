@@ -1,0 +1,21 @@
+<!-- application/layouts/scripts/layout.phtml -->
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Calculator</title>
+	<?php $this->headLink()->appendStylesheet($this->baseUrl.'/css/global.css'); ?>
+	<?php if($this->includeJQuery){
+		$this->headScript()->appendFile($this->baseUrl.'/js/jquery-1.6.2.min.js');
+		$this->headScript()->appendFile($this->baseUrl.'/js/calc.js');
+	} ?>
+	<?php echo '
+	'.$this->headLink(); ?>
+	<?php echo '
+	'.$this->headScript().'
+'; ?>
+</head>
+<body>
+	<?php echo $this->layout()->content ?>
+</body>
+</html>
